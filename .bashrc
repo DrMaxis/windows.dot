@@ -10,6 +10,8 @@ export SUDO_EDITOR=nvim
 export PATH=$PATH:/home/user/.pulumi/bin
 export PULUMI_CONFIG_PASSPHRASE="bazinga"
 
+export PATH=$PATH:/home/user/.atuin/bin
+
 
 # Extras
 function cd {
@@ -33,3 +35,23 @@ shopt -s autocd
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
+
+# Atuin Bash history
+eval "$(atuin init bash)"
+bind '"\e[A": history-search-backward'
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# FZF
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow'
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Set up fzf key bindings and fuzzy completion
+eval "$(fzf --zsh)"
+
+# Exa
+alias l="eza -l --icons --git -a"
+alias lt="eza --tree --level=2 --long --icons --git"
+
+# HTTP requests with xh!
+alias http="xh"
